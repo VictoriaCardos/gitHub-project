@@ -8,4 +8,5 @@ export const Container = styled.main`
   flex-direction: column;
   background: var(--container);
   margin-top: 20px;
+  justify-content: flex-start;
 `
