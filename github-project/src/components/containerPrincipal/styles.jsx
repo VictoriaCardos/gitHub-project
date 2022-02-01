@@ -7,4 +7,5 @@ export const Container = styled.main`
   justify-content: center;
   flex-direction: column;
   background: var(--container);
+  margin-top: 20px;
 `
