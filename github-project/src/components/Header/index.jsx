@@ -17,9 +17,10 @@ const Header = () => {
   async function getUserData() {
     try {
       const response = await api.get(`/${searchedUser}`)
+      const repos = await api.get(`/${searchedUser}/repos`)
 
       ctx.setUserData(response.data)
-      console.log(ctx.setUserData(response.data))
+      ctx.setRepos(repos.data)
     } catch {
       alert(`${searchedUser} não foi encontrado`)
     }
