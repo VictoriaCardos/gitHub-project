@@ -9,7 +9,7 @@ const ReposContainer = props => {
       <ListOfReposContainer>
         {(props?.repos).map(repo => (
           <Repo
-            onClick={() => (window.location.href_blank = repo?.html_url)}
+            onClick={() => (window.location.href = repo?.html_url)}
             key={repo?.id}
           >
             <h2>{repo?.name}</h2>
