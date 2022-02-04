@@ -18,9 +18,11 @@ const Header = () => {
     try {
       const response = await api.get(`/${searchedUser}`)
       const repos = await api.get(`/${searchedUser}/repos`)
+      const followers = await api.get(`/${searchedUser}/followers`)
 
       ctx.setUserData(response.data)
       ctx.setRepos(repos.data)
+      ctx.setFollowersData(followers.data)
     } catch {
       alert(`${searchedUser} não foi encontrado`)
     }
