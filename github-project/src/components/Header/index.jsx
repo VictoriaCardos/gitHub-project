@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { context } from '../../context/index'
 import { FiSearch } from 'react-icons/fi'
 import { AiFillGithub } from 'react-icons/ai'
@@ -18,7 +20,15 @@ const Header = () => {
 
   function verifyInput() {
     if (searchedUser == '') {
-      alert('insira um user!')
+      toast.dark('Insira um user primeiro', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
     } else {
       getUserData()
       setSearchedUser('')
@@ -36,8 +46,10 @@ const Header = () => {
       ctx.setRepos(repos.data)
       ctx.setFollowersData(followers.data)
       ctx.setFollowingData(following.data)
+
+      toast.success('Usuário encontrado!')
     } catch {
-      alert(`${searchedUser} não foi encontrado`)
+      toast.dark(`${searchedUser} não foi encontrado`)
     }
   }
 
@@ -57,6 +69,18 @@ const Header = () => {
           <FiSearch size={15} />
         </HeaderSearchButton>
       </HeaderInputContainer>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </HeaderSection>
   )
 }
