@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { context } from '../../context/index'
+import { FiSearch } from 'react-icons/fi'
+import { AiFillGithub } from 'react-icons/ai'
 import api from '../../services/api'
 
 import {
@@ -13,6 +15,15 @@ import {
 const Header = () => {
   const ctx = useContext(context)
   const [searchedUser, setSearchedUser] = useState('')
+
+  function verifyInput() {
+    if (searchedUser == '') {
+      alert('insira um user!')
+    } else {
+      getUserData()
+      setSearchedUser('')
+    }
+  }
 
   async function getUserData() {
     try {
@@ -32,7 +43,9 @@ const Header = () => {
 
   return (
     <HeaderSection>
-      <HeaderTitle>Github Profile</HeaderTitle>
+      <HeaderTitle>
+        Github Profile <AiFillGithub size={45} />
+      </HeaderTitle>
 
       <HeaderInputContainer>
         <HeaderInput
@@ -40,7 +53,9 @@ const Header = () => {
           onChange={e => setSearchedUser(e.target.value)}
         />
 
-        <HeaderSearchButton onClick={getUserData}></HeaderSearchButton>
+        <HeaderSearchButton onClick={verifyInput}>
+          <FiSearch size={15} />
+        </HeaderSearchButton>
       </HeaderInputContainer>
     </HeaderSection>
   )
