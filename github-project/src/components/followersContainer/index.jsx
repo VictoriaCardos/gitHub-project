@@ -25,7 +25,7 @@ const FollowersContainer = props => {
 
   return (
     <Section>
-      <Title>Seguidores de {props.name.split(' ')[0]}</Title>
+      <Title>Seguidores de {props.name?.split(' ')[0]}</Title>
 
       <ListOfFollowersContainer>
         {(props?.followers).map(foll => (
@@ -33,7 +33,7 @@ const FollowersContainer = props => {
             <ProfilePicture src={foll.avatar_url} alt={foll.avatar_url} />
 
             <span>
-              <h2 onClick={redirectForHome(foll)}>{foll?.login}</h2>
+              <h2>{foll?.login}</h2>
             </span>
           </Foll>
         ))}
