@@ -8,17 +8,6 @@ const ReposContainer = props => {
 
   const [modalIsOpen, setIsOpen] = useState(false)
 
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
-    }
-  }
-
   function openModal() {
     setIsOpen(true)
   }
@@ -29,7 +18,7 @@ const ReposContainer = props => {
 
   return (
     <Section>
-      <Title>Repositórios de {props.name.split(' ')[0]}</Title>
+      <Title>Repositórios de {props.name?.split(' ')[0]}</Title>
       <ListOfReposContainer>
         {(props?.repos).map(repo => (
           <>
@@ -39,17 +28,23 @@ const ReposContainer = props => {
               <h3>{repo?.language}</h3>
             </Repo>
             <Modal
+              key={repo?.node_id}
               isOpen={modalIsOpen}
-              onAfterOpen={afterOpenModal}
               onRequestClose={closeModal}
-              style={customStyles}
+              overlayClassName="react-modal-overlay"
+              className="react-modal-content"
               contentLabel="Example Modal"
             >
-              <h3>Deseja ser direcionado para este repositório no GitHub?</h3>
-              <button onClick={closeModal}>close</button>
-              <button onClick={() => (window.location.href = repo?.html_url)}>
-                Sim!
+              <h3>Deseja ser direcionado para o repositório no GitHub?</h3>
+              <button className="react-modal-close" onClick={closeModal}>
+                Fechar
               </button>
+              <div className="optionsButtons">
+                <button onClick={() => (window.location.href = repo?.html_url)}>
+                  Sim!
+                </button>
+                <button onClick={closeModal}>Não!</button>
+              </div>
             </Modal>
           </>
         ))}
