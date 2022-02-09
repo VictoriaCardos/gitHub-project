@@ -11,17 +11,9 @@ import { context } from '../../context'
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 
-//está acontecendo o que eu queria porem ele está percorrendo e renderizando todos os followers, por isso mudei o onClick para o <h2>, vamos ver o que acontece.
-
 const FollowersContainer = props => {
   const ctx = useContext(context)
   const navigate = useNavigate()
-
-  async function redirectForHome(foll) {
-    const response = await api.get(`/${foll.login}`)
-    ctx.setUserData(response.data)
-    navigate('/')
-  }
 
   return (
     <Section>
@@ -33,7 +25,23 @@ const FollowersContainer = props => {
             <ProfilePicture src={foll.avatar_url} alt={foll.avatar_url} />
 
             <span>
-              <h2>{foll?.login}</h2>
+              <h2
+                onClick={async function redirectForHome() {
+                  const response = await api.get(`/${foll.login}`)
+                  const repos = await api.get(`/${foll.login}/repos`)
+                  const followers = await api.get(`/${foll.login}/followers`)
+                  const following = await api.get(`/${foll.login}/following`)
+
+                  ctx.setUserData(response.data)
+                  ctx.setRepos(repos.data)
+                  ctx.setFollowersData(followers.data)
+                  ctx.setFollowingData(following.data)
+                  navigate(`/`)
+                  console.log(ctx)
+                }}
+              >
+                {foll?.login}
+              </h2>
             </span>
           </Foll>
         ))}
