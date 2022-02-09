@@ -12,8 +12,10 @@ const Home = () => {
   const ctx = useContext(context)
 
   return (
-    <MainContainer>
-      <Header />
+    <>
+      <MainContainer>
+        <Header />
+      </MainContainer>
       <UserContainer>
         {ctx.userData?.name ? (
           <>
@@ -36,7 +38,7 @@ const Home = () => {
           </>
         ) : undefined}
       </UserContainer>
-    </MainContainer>
+    </>
   )
 }
 
