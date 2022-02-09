@@ -66,9 +66,9 @@ export const GlobalStyle = createGlobalStyle`
 
     button{
       width: 60px;
-      transition:  0.1s;
+      
       &:hover{
-        color:var(--background);
+        color:var(--text);
         background: var(--orange);
         border-radius: 0.25rem;
       }
