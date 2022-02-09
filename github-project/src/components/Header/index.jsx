@@ -19,7 +19,7 @@ const Header = () => {
   const [searchedUser, setSearchedUser] = useState('')
 
   function verifyInput() {
-    if (searchedUser == '') {
+    if (searchedUser === '') {
       toast.dark('Insira um user primeiro', {
         position: 'top-right',
         autoClose: 3000,
