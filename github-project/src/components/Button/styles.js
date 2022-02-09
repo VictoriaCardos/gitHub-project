@@ -8,6 +8,7 @@ export const Button = styled.button`
   width: 135px;
   border-radius: 7px;
   border: none;
+  right: -124px;
 
   &:hover {
     background: #e26f04ca;
