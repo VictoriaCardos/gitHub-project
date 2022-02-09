@@ -16,7 +16,7 @@ const FollowingContainer = props => {
 
   return (
     <Section>
-      <Title>{props.name.split(' ')[0]} está seguindo:</Title>
+      <Title>{props.name?.split(' ')[0]} está seguindo:</Title>
 
       <ListOfFollowingContainer>
         {props.following.map(foll => (
